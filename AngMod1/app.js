@@ -1,33 +1,29 @@
-(function() {
-    'use strict';
+(function () {
 
-    angular.module('LunchCheck', [])
-        .controller('LunchCheckController', LunchCheckController);
+'use strict';
+angular.module('LunchCheck',[])
+.controller('MsgController',MsgController);
 
-    LunchCheckController.$inject = ['$scope'];
-
-    function LunchCheckController($scope) {
-        $scope.dishes = '';
-        $scope.message = '';
-        $scope.checked = false;
-
-        $scope.checkLunch = function() {
-            if ($scope.dishes.trim().length === 0) {
-                $scope.empty = true;
-            } else {
-                $scope.checked = true;
-                $scope.empty = false;
-                var arrayDishes = $scope.dishes.split(',');
-                var arrayDishesWithoutEmptys = arrayDishes.filter(function(v) {
-                    return v.trim() !== '';
-                });
-
-                if (arrayDishesWithoutEmptys.length <= 3) {
-                    $scope.message = 'Enjoy!';
-                } else {
-                    $scope.message = 'Too much!';
-                }
-            }
-        };
-    }
+MsgController.$inject = ['$scope'];
+function MsgController($scope){
+	$scope.result = "";
+	$scope.input = "";
+	$scope.checkLunch = function(){
+		if ($scope.input == "") {
+				$scope.result = "Please enter item name.";
+		}
+		else
+		{
+			var length = (($scope.input).split(",")).length;
+			if(length > 0 && length < 4)
+			{
+				$scope.result = "Enjoy!";
+			}
+			else
+			{
+				$scope.result = "Too Much";
+			}
+		}
+	};
+}
 })();
