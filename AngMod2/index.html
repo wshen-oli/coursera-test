@@ -1,0 +1,49 @@
+
+<!doctype html>
+<html ng-checklist lang="en">
+  <head>
+    <title>Shopping List Check Off</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+
+    <style>
+      li {
+        margin-bottom: 1px;
+        font-size: 1.5em;
+      }
+    </style>
+  </head>
+  
+<body ng-app="ShoppingListCheck">
+  <div class="container">
+  <h1>Shopping Check List</h1>
+
+  <div class="row">
+
+    <!-- To Buy List -->
+    <div class="col-md-6" ng-controller="ToBuyCtrlr as toBuyList">
+     <h2>Need To Buy List:</h2>
+     <ul>
+      <li ng-repeat="item in toBuyList.items">Buy {{item.quantity}} {{item.name}}
+        <button class="btn btn-default" ng-click="toBuyList.buyItem($index)"><span class="glyphicon glyphicon-ok"></span> Buy</button>
+    </li>
+     </ul>
+     <div ng-if="toBuyList.items.length == 0">Everything has been bought!</div>
+    </div>
+
+    <!-- Already Bought List -->
+    <div class="col-md-6" ng-controller="AlreadyBoughtCtrlr as alreadyBoughtList">
+     <h2>Already Bought:</h2>
+     <ul>
+      <li ng-repeat="item in alreadyBoughtList.items">Bought {{item.quantity}} {{item.name}}</li>
+     </ul>
+     <div ng-if="alreadyBoughtList.items.length == 0">Nothing has been bought yet.</div>
+    </div>
+  </div>
+</div>
+<script src="angular.min.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
