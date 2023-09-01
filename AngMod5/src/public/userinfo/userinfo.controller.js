@@ -1,5 +1,5 @@
 (function () {
-    "use strict";
+    "user restrict";
 
     angular.module('public')
         .controller('UserInfoController', UserInfoController);
